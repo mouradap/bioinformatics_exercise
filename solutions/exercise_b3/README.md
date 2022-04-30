@@ -16,6 +16,11 @@ Optional arguments:
 Run main command with necessary and optional arguments.
 > python main.py -i input/input.txt -t input/target.txt -o output/output.txt -sep "    "
 
+## Tests:
+The main algorithm was implemented with test driven development by asserting the example outputs with the example inputs.
+Tests can be ran with:
+> pytest tests/test.py
+
 ## Assumptions:
 This script assumes you provide only one entry per transcript name in the input file.
 The target file can have multiple queries for the transcript position.
@@ -27,3 +32,5 @@ Space-wise, this script stores and writes O(N).
 
 ## Further improvement:
 As the necessity grows, this logic can be implemented using a databases to store each transcript CIGAR chromosome mapping, reducing the processing time of the query to a select in the database.
+
+#### Code formatted with black.
