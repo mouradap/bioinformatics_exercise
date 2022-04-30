@@ -33,7 +33,6 @@ class TranscriptToGenome:
             match: list. Description: A list of tuples extracted from a valid CIGAR string.
         """
         query_gap = 1
-        input_gap = -1
 
         paired_coordinates = []
         current_pos = 0
@@ -44,8 +43,10 @@ class TranscriptToGenome:
                     paired_coordinates.append(current_pos)
                     current_pos += 1
             elif t[1] == "I":
+                insert_gap = 1
                 for i in range(int(t[0])):
-                    paired_coordinates.append(input_gap)
+                    paired_coordinates.append(f"{current_pos-1}+{insert_gap}")
+                    insert_gap += 1
             else:
                 for i in range(int(t[0])):
                     current_pos += query_gap
@@ -64,8 +65,12 @@ class TranscriptToGenome:
         paired_coordinates = self.__analyze_cigar(match)
 
         for i, coord in enumerate(paired_coordinates):
-            if coord != -1:
+            if isinstance(coord, int):
                 paired_coordinates[i] += starting_position
+            else:
+                transcript_coord = paired_coordinates[i].split('+')
+                genomic_coord = int(transcript_coord[0]) + starting_position
+                paired_coordinates[i] = f"{genomic_coord}+{transcript_coord[1]}"
 
         if query_position < len(paired_coordinates):
             return paired_coordinates[query_position]
