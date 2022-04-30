@@ -26,7 +26,7 @@ class Operator:
         self.__validate_input_target()
         self.output_path = "/".join(output.split("/")[:-1])
         self.output_file = output.split("/")[-1]
-        
+
     def __validate_input_target(self):
         """
         Validates the input. Throws InputError exceptions in the case when the input is missing any of the required columns.

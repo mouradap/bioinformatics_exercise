@@ -10,18 +10,28 @@ parser.add_argument(
     "--input",
     type=str,
     help="Input one: a 4-column text file containing transcript name, chromosome, starting position, and CIGAR string mapping.",
-    required=True
+    required=True,
 )
 parser.add_argument(
     "-t",
     "--target",
     type=str,
     help="a 2-column text file containing the transcript name and the query transcript position.",
-    required=True
+    required=True,
 )
-parser.add_argument("-o", "--output", type=str, help="File path for output file.", default="output/output.txt")
 parser.add_argument(
-    "-sep", "--separator", type=str, help="The separator for the input files.", default="    "
+    "-o",
+    "--output",
+    type=str,
+    help="File path for output file.",
+    default="output/output.txt",
+)
+parser.add_argument(
+    "-sep",
+    "--separator",
+    type=str,
+    help="The separator for the input files.",
+    default="    ",
 )
 args = parser.parse_args()
 

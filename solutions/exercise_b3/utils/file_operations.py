@@ -2,6 +2,7 @@ class Reader:
     """
     A class to read files and operates on them.
     """
+
     def __init__(self):
         pass
 
@@ -29,6 +30,7 @@ class Writer:
     """
     A class to write files and operates on them.
     """
+
     def __init__(self):
         pass
 
